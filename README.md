@@ -1,10 +1,12 @@
 # SHeader-C-String-Library
 
 >GENELLESTIRILMIS KURALLAR
-+TUM ISLEMLER 1 NUMARALIDAN 2 NUMARALI OLANA DOGRU GERCEKLESIR
-+HER ZAMAN VERILEN 2 ARALIKTA DAHILDIR
+    
+    1-TUM ISLEMLER 1 NUMARALIDAN 2 NUMARALI OLANA DOGRU GERCEKLESIR
+    2-HER ZAMAN VERILEN 2 ARALIKTA DAHILDIR
 
 >FONKSIYONLAR
+
     s_len       => string uzunlugunu geri cevirir
     s_lenControl=> string boyutlarini kiyaslayarak geriye uyari cevirir
 
@@ -24,5 +26,6 @@
     sd_format   => parametreye girilen stringde kacis dizisi islemlerini yapmamizi saglar
 
 >PARAMETRELER
+
     xxxxxxxxStatus      => sonu Status ile biten parametreler hiz icin kapatilabilir parametrelerdir true/false 0/1 degerleri alirlar
     startIndex          =>
