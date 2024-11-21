@@ -1,9 +1,6 @@
 #ifndef __S_HEADER__
 #define __S_HEADER__
 
-#define true 1
-#define false 0
-
 /*
 +TUM ISLEMLER 1 NUMARALIDAN 2 NUMARALI OLANA DOGRU GERCEKLESIR
 +HER ZAMAN VERILEN 2 ARALIKTA DAHILDIR
@@ -26,6 +23,7 @@ s_concat    => statik olarak str1 ve str2 stringlerini 3.parametre olan concatSt
 sd_concat   => dinamik olarak str1 ve str2 stringlerini birlestirir ve ayri bellek olarak doner
 
 sd_format   => parametreye girilen stringde kacis dizisi islemlerini yapmamizi saglar
+s_powxy     =>
 
 PARAMETRELER
 xxxxxxxxStatus      => sonu Status ile biten parametreler hiz icin kapatilabilir parametrelerdir true/false 0/1 degerleri alirlar
@@ -47,6 +45,13 @@ char* s_slice(char *str);
 
 void s_concat(char *str1 , char *str2 , char *concatStr);
 char* sd_concat(char *str1 , char *str2);
+
+//implemantasyonlar icin gerekli olan fonksiyonlar
+int s_powxy(int x , int y);
+void s_zerosArray(int *arr , int size);
+
+//EKLENECEK AMA ISLEVLERI BELIRLENMEYENLER
+void sd_format();
 
 
 

@@ -87,12 +87,77 @@ char* sdn_cpy(const char *str1 , int startIndex , int stopIndex){
 }
 
 
+int s_powxy(int x , int y){
+    int result = 1 , i = 0;
+    while(i++ < y){
+        result *= x;
+    }
+
+    return result;
+}
+
+void s_zerosArray(int *arr , int size){
+    for(int i = 0 ; i < size ; i++)
+        arr[i] = 0;
+}
 
 
-int s_toInt(const char *str){}
-char* i_toStr(int n){}
+int s_toInt(const char *str){
+    int len1 = s_len(str);
+    int digitArr[len1];
+    s_zerosArray(digitArr,len1);
 
-char* s_slice(char *str){}
+    int i = 0;
+    while(*str){    
+        digitArr[i++] = *str - '0';
+        str++;
+    }
 
-void s_concat(char *str1 , char *str2 , char *concatStr){}
-char* sd_concat(char *str1 , char *str2){}
+    int number = 0;
+    for(int i = 0 ; i < len1 ; i++){
+        number += digitArr[i] * s_powxy(10,len1-i-1);
+    }
+
+    return number;
+}
+
+
+char* i_toStr(int n){
+
+}
+
+char* s_slice(char *str){
+
+}
+
+void s_concat(char *str1 , char *str2 , char *concatStr){
+    int len1 = s_len(str1);
+    int len2 = s_len(str2);
+
+    for(int i = 0 ; i < len1 ; i++){
+        concatStr[i] = str1[i]; 
+    }
+
+    for(int j = 0 ; j < len2 ; j++){
+        concatStr[len1+j] = str2[j];
+    }
+}
+
+char* sd_concat(char *str1 , char *str2){
+    int len1 = s_len(str1);
+    int len2 = s_len(str2);
+
+    char *resultStr = (char*) malloc(sizeof(char) * (len1+len2));
+    if(resultStr == NULL){
+        printf("SD_CONCAT: BELLEK TAHSIS HATASI\n");
+        return NULL;
+    }
+
+    for(int i = 0 ; i < len1 ; i++)
+        resultStr[i] = str1[i];
+
+    for(int j = 0 ; j < len2 ; j++)
+        resultStr[len1+j] = str2[j];
+
+    return resultStr;
+}
