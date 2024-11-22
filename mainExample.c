@@ -42,6 +42,25 @@ int main(){
     char *shortest = sd_short(arr1);
     printf("%s\n",shortest);
 
+    printf("KELIME SAYISI : %d\n",s_wc(arr1)); //3
+
+    int *herKelimeninLeni = sd_slen(arr1);
+    printIntArray(herKelimeninLeni,s_wc(arr1)); //5,5,15
+
+    char arr9[15] = "alican";
+    char arr10[10] = "alican";
+    char arr11[10] = "alican    ";
+
+    //int s_equal(const char *str1 , const char *str2,int isWantLastSpaceDelete);
+    printf("%d\n",s_equal(arr9,arr10,0)); //"alican" == "alican"        =>default str1 len  TRUE
+    printf("%d\n",s_equal(arr9,arr11,0)); //"alican" == "alican     "   =>default str1 len  TRUE
+    printf("%d\n",s_equal(arr9,arr11,1)); //"alican" == "alican"        =>default minLen    TRUE
+    printf("%d\n",s_equal(arr11,arr9,0)); //"alican     " == "alican"   =>default str1 len  FALSE
+    printf("%d\n",s_equal(arr11,arr9,1)); //"alican     " == "alican"   =>default minLen    TRUE
+    
+    
+    
+
     free(kopyaArr1);
     free(kopyaArr1Index);
     free(oki2Doki);

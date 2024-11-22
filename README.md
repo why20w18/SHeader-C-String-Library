@@ -8,9 +8,10 @@
 >FONKSIYONLAR
 
     +s_len       => string uzunlugunu geri cevirir
-    -s_slen      => icinde birden fazla kelime olan stringin icindeki her kelimenin uzunlugunu array olarak geri cevirir
+    +sd_slen     => icinde birden fazla kelime olan stringin icindeki her kelimenin uzunlugunu array olarak geri cevirir
+    +s_wc        => string icinde tek boslukla ayrilmis her kelimeyi sayar ve geri cevirir
 
-    +s_cpy       => stringi statik olarak parametre verilen arraye kopyalar
+    +s_cpy       => stringi statik olarak parametre verilen arrayi kopyalanacagi arrayin boyutlarina gore kontrol edip kopyalar 
     +sd_cpy      => verilen stringi dinamik olarak kopyalayip geri cevirir
     +sn_cpy      => stringi statik olarak parametreye verilen arraye girilen indexler arasinda kopyalar
     +sdn_cpy     => verilen stringi dinamik olarak kopyalarken verilen indexlere gore islem gorur ve geri cevirir
@@ -25,12 +26,14 @@
 
     -sd_format   => parametreye girilen stringde kacis dizisi islemlerini yapmamizi saglar
 
-    -sd_long     => string icindeki en uzun kelimeyi geri cevirir
-    -sd_short    => string icindeki en kisa kelimeyi geri cevirir
+    +sd_long     => string icindeki en uzun kelimeyi geri cevirir
+    +sd_short    => string icindeki en kisa kelimeyi geri cevirir
 
-    -s_equal     => girilen 2 string birbirine esitse true/1 esit degilse false/0 cevirir 
+    +s_equal     => girilen 2 stringi 3.parametreye gore kiyaslar eger isSpaceInclude=1 ise min uzunluktaki stringe gore
+                    islem yapar eger 0 ise 1.parametredeki stringin uzunluguna gore islem yapar
 
 >PARAMETRELER
 
     xxxxxxxxStatus      => sonu Status ile biten parametreler hiz icin kapatilabilir parametrelerdir true/false 0/1 degerleri alirlar
     startIndex          =>
+    isSpaceInclude      =>

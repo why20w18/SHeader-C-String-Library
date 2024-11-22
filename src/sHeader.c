@@ -10,6 +10,45 @@ int s_len(const char *str){
     return len;
 }
 
+int s_wc(const char *str){
+    if(str == NULL) return -1;
+    
+    int len = s_len(str);
+    int wc = 1;
+
+    for(int i = 0 ; i < len ; i++){
+        if(*(str+i) == ' ' || str[i] == '\0'){
+            wc++;
+        }
+    }
+    return wc;
+}
+
+int *sd_slen(const char *str){
+    if(str == NULL) return NULL;
+
+    //"abc def ghj"
+    int len = s_len(str);
+    int wc = s_wc(str);
+
+    int currentLen = 0;
+
+    int *lenArr = (int*) malloc(sizeof(int)*wc);
+
+    int j = 0;
+    for(int i = 0 ; i < len ; i++){
+        if(str[i] != ' ')
+            currentLen++;
+        else{
+            lenArr[j++] = currentLen;
+            currentLen = 0;
+        }
+    }
+    lenArr[j] = currentLen;
+
+    return lenArr;
+}
+
 void s_cpy(const char *str1 , char *str2,int maxSizeof){
     if(str1 == NULL || str2 == NULL) return;
 
@@ -230,4 +269,36 @@ char *sd_short(char *str){
     }
 
     return resultStr;
+}
+
+void printIntArray(int *arr , int size){
+    for(int i = 0 ; i < size ; i++)
+        printf("%d ",arr[i]);
+    printf("\n");
+}
+
+int s_equal(const char *str1 , const char *str2,int isWantLastSpaceDelete){
+    if(str1 == NULL || str2 == NULL) return -1;
+
+    int len1 = s_len(str1);
+    int len2 = s_len(str2);
+
+    if(isWantLastSpaceDelete){
+        int minLen = (len1 > len2) ? len2 : len1;
+        
+        for(int i = 0 ; i < minLen ; i++){
+            if(str1[i] != str2[i])
+                return 0;
+        }
+
+        return 1;
+    }
+
+    else if(isWantLastSpaceDelete == 0){
+        for(int i = 0 ; i < len1 ; i++){
+            if(str1[i] != str2[i])
+                return 0;
+        }
+        return 1;
+    }
 }

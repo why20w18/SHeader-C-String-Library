@@ -13,7 +13,8 @@ typedef struct{
 
 //TEMEL STRING FONKSIYONLARI
 int s_len(const char *str);
-int* s_slen(const char *str);
+int* sd_slen(const char *str);
+int s_wc(const char *str);
 
 void s_cpy(const char *str1 , char *str2 , int maxSizeof);
 void sn_cpy(const char *str1 , char *str2 , int startIndex , int stopIndex);
@@ -22,6 +23,8 @@ char* sdn_cpy(const char *str1 , int startIndex , int stopIndex);
 
 int s_toInt(const char *str);
 char* i_toStr(int n);
+
+int s_equal(const char *str1 , const char *str2 , int isWantLastSpaceDelete);
 
 char* s_slice(char *str);
 
@@ -37,6 +40,7 @@ int isEmpty(char *msg);
 //IMPLEMENTASYON ICIN GEREKLI FONKSIYONLAR
 int s_powxy(int x , int y);
 void s_zerosArray(int *arr , int size);
+void printIntArray(int *arr , int size);
 
 //EKLENECEK AMA ISLEVLERI BELIRLENMEYENLER
 void sd_format();
