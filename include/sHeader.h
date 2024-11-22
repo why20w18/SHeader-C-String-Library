@@ -36,6 +36,9 @@ char* sd_concat(char *str1 , char *str2);
 char* sd_long(char *str);
 char* sd_short(char *str);
 
+char** sd_split(char *str);
+void sd_freeSplit(char *send_sdArrayParam , char **sd_array);
+
 //BOOL FONKSIYONLARI
 int isEmpty(char *msg);
 

@@ -359,3 +359,52 @@ int s_equal(const char *str1 , const char *str2,int isWantLastSpaceDelete){
         return 1;
     }
 }
+
+char** sd_split(char *str){
+    int len = s_len(str); //gelen string total uzunlugu
+    int wc = s_wc(str); //gelen stringin icindeki kelime sayisi
+    int *sslen = sd_slen(str); //gelen stringin icindeki kelimelerin uzunlugu
+
+    //2 boyutlu array icinde stringleri tutacak
+    char **sarray = (char**) malloc(sizeof(char*) * wc);
+
+    int i = 0 , j = 0 , k = 0;
+
+    //her kelime icin ayri array actik ve her kelimenin uzunlugu kadar actik
+    while(i < wc){
+        sarray[i++] = (char*) malloc(sizeof(char) * sslen[i]);
+    }
+    i = 0;
+    free(sslen);
+
+    //gelen stringin tum karakterlerini gezsin
+    while(i < len){
+
+        if(str[i] != ' '){
+            sarray[k][j++] = str[i];
+        }
+        else{
+            if(j > 0){
+                sarray[k][j] = '\0';
+                j = 0;
+                k++;
+            }
+        }
+        i++;
+    }
+
+    if(j > 0){
+        sarray[k][j] = '\0';
+    }
+    
+    return sarray;
+}
+
+void sd_freeSplit(char *send_sdArrayParam , char **sdArray){
+    int wc = s_wc(send_sdArrayParam);
+
+    for(int i = 0 ; i < wc ; i++){
+        free(sdArray[i]);
+    }
+    free(sdArray);
+}

@@ -38,6 +38,9 @@
     -s_rev       => verilen stringi ters cevirir ve string uzerinde islem yapar
     -sd_rev      => verilen string uzerinde islem yapmaz ters cevrilmis stringi geri cevirir
 
+    +sd_split    => verilen stringin her kelimesini ayri bir arraye cevirir ve 2D array olarak cevirir split eder
+    +sd_freeSplit=> split edilmesi icin gonderilen array ile split edilmis arrayi parametre olarak alir ve 2D arrayi siler
+
 >PARAMETRELER
 
     xxxxxxxxStatus      => sonu Status ile biten parametreler hiz icin kapatilabilir parametrelerdir true/false 0/1 degerleri alirlar

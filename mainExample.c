@@ -66,13 +66,25 @@ int main(){
     s_slice(arr9,3,-1,boslukDoldurmaKarakteri);
     printf("arr9:::: %s\nlen ::: %d\n",arr9,s_sflen(arr9,boslukDoldurmaKarakteri));
     
+    printf("%s\n",arr1);
+    char **arr1_split = sd_split(arr1);
 
+    for(int i = 0 ; i < 3 ; i++){
+        printf("%s\n",arr1_split[i]);
+    }
+
+/*
+    printf("%s\n",arr1_split[0]);
+    printf("%s\n",arr1_split[1]);
+    printf("%s\n",arr1_split[2]);
+*/
     free(kopyaArr1);
     free(kopyaArr1Index);
     free(oki2Doki);
     free(longest);
     free(shortest);
     free(canKelimesi);
+    sd_freeSplit(arr1,arr1_split);
 
     return 0x0;
 }
