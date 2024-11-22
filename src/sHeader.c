@@ -10,23 +10,16 @@ int s_len(const char *str){
     return len;
 }
 
-void s_lenControl(const char *str1 , const char *str2){
-    int len1 = s_len(str1);
-    int len2 = s_len(str2);
-    if(len1 > len2){
-        perror("2.PARAMETREDEKI ARRAYIN BOYUTU KOPYALAMA ICIN YETERSIZDIR !");
-        return;
-    }
-}
+void s_cpy(const char *str1 , char *str2,int maxSizeof){
+    if(str1 == NULL || str2 == NULL) return;
 
-void s_cpy(const char *str1 , char *str2 , int s_lenControlStatus){
-    if(s_lenControlStatus)
-        s_lenControl(str1,str2);
-    
     int len1 = s_len(str1);
+    int copyLen = (len1 < maxSizeof-1) ? len1 : (maxSizeof-1);
 
-    for(int i = 0 ; i < len1 ; i++)
-        *(str2+i) = *(str1+i);
+    for(int i = 0 ; i < copyLen ; i++)
+        str2[i] = str1[i];
+
+    str2[copyLen] = '\0'; 
 }
 
 void sn_cpy(const char *str1 , char *str2 , int startIndex , int stopIndex){
@@ -46,6 +39,8 @@ void sn_cpy(const char *str1 , char *str2 , int startIndex , int stopIndex){
         i++;
         startIndexAddr++;
     }
+
+    str2[i] = '\0';
 }
 
 
@@ -58,9 +53,12 @@ char* sd_cpy(const char *str1){
         return NULL;
     }
 
-    for(int i = 0 ; i < len1 ; i++){
+    int i = 0;
+    for(i = 0 ; i < len1 ; i++){
         strResult[i] = str1[i];
     }
+    strResult[i] = '\0';
+
     return strResult;
 }
 
@@ -83,6 +81,7 @@ char* sdn_cpy(const char *str1 , int startIndex , int stopIndex){
         startIndexAddr++;
     }
 
+    strResult[i] = '\0';
     return strResult;
 }
 
@@ -158,6 +157,77 @@ char* sd_concat(char *str1 , char *str2){
 
     for(int j = 0 ; j < len2 ; j++)
         resultStr[len1+j] = str2[j];
+
+    return resultStr;
+}
+
+char* sd_long(char *str){
+    if(str == NULL) return NULL;
+
+    int maxLen = 0 , currentLen = 0;
+    char *resultStr = NULL , *startWord = NULL;
+
+    while(*str){
+        if(*str != ' '){
+            if(currentLen == 0){
+                startWord = str;
+            }
+            currentLen++;
+        }
+        else{
+            if(currentLen > maxLen){
+                maxLen = currentLen;
+                free(resultStr);
+                resultStr = (char*) malloc(sizeof(char) * (currentLen+1));
+                s_cpy(startWord,resultStr,currentLen+1);
+            }
+            currentLen = 0;
+        }
+
+
+        str++;
+    }
+
+     if(currentLen > maxLen){
+        maxLen = currentLen;
+        free(resultStr);
+        resultStr = (char*) malloc(sizeof(char) * (currentLen+1));
+        s_cpy(startWord,resultStr,currentLen+1);
+    }
+
+    return resultStr;
+}
+
+char *sd_short(char *str){
+    int currentLen = 0 , minLen = S_INT_MAX;
+    char *startAddr = NULL , *resultStr = NULL;
+
+    while(*str){
+        if(*str != ' '){
+            if(currentLen == 0)
+            startAddr = str;
+        currentLen++;
+        }
+        else{
+            if(currentLen > 0 && currentLen < minLen){
+                minLen = currentLen;
+                free(resultStr);
+                int resultStrSizeof = currentLen+1;
+                resultStr = (char*) malloc(sizeof(char) * resultStrSizeof);
+                s_cpy(startAddr,resultStr,resultStrSizeof);
+            }
+            currentLen = 0;
+        }
+        str++;
+    }
+    //son kelime icin
+    if(currentLen > 0 && currentLen < minLen){
+        minLen = currentLen;
+        free(resultStr);
+        int resultStrSizeof = currentLen+1;
+        resultStr = (char*) malloc(sizeof(char) * resultStrSizeof);
+        s_cpy(startAddr,resultStr,resultStrSizeof);
+    }
 
     return resultStr;
 }

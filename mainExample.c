@@ -3,7 +3,7 @@
 #include "sHeader.h"
 
 int main(){
-    char arr1[100] = "Hello World";
+    char arr1[100] = "Hello World MERHABADUNYALAR";
     
     char arr2[10] = "1337";
     char arr3[10] = "oki ";
@@ -34,10 +34,19 @@ int main(){
     printf("arr6::: %s\n",arr7);//oki doki
 
     char *oki2Doki = sd_concat(arr3,arr7);
-    printf("%s\n",oki2Doki);
+    printf("%s\n",oki2Doki);//oki oki doki
+
+    char *longest = sd_long(arr1);
+    printf("%s\n",longest);
+
+    char *shortest = sd_short(arr1);
+    printf("%s\n",shortest);
 
     free(kopyaArr1);
     free(kopyaArr1Index);
     free(oki2Doki);
+    free(longest);
+    free(shortest);
+
     return 0x0;
 }

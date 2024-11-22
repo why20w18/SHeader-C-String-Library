@@ -8,7 +8,7 @@
 >FONKSIYONLAR
 
     +s_len       => string uzunlugunu geri cevirir
-    +s_lenControl=> string boyutlarini kiyaslayarak geriye uyari cevirir
+    -s_slen      => icinde birden fazla kelime olan stringin icindeki her kelimenin uzunlugunu array olarak geri cevirir
 
     +s_cpy       => stringi statik olarak parametre verilen arraye kopyalar
     +sd_cpy      => verilen stringi dinamik olarak kopyalayip geri cevirir
@@ -24,6 +24,11 @@
     +sd_concat   => dinamik olarak str1 ve str2 stringlerini birlestirir ve ayri bellek olarak doner
 
     -sd_format   => parametreye girilen stringde kacis dizisi islemlerini yapmamizi saglar
+
+    -sd_long     => string icindeki en uzun kelimeyi geri cevirir
+    -sd_short    => string icindeki en kisa kelimeyi geri cevirir
+
+    -s_equal     => girilen 2 string birbirine esitse true/1 esit degilse false/0 cevirir 
 
 >PARAMETRELER
 

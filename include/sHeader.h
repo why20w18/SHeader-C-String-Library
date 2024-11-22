@@ -1,39 +1,21 @@
 #ifndef __S_HEADER__
 #define __S_HEADER__
 
-/*
-+TUM ISLEMLER 1 NUMARALIDAN 2 NUMARALI OLANA DOGRU GERCEKLESIR
-+HER ZAMAN VERILEN 2 ARALIKTA DAHILDIR
+#define S_INT_MAX 2147483647
 
-FONKSIYONLAR
-s_len       => string uzunlugunu geri cevirir
-s_lenControl=> string boyutlarini kiyaslayarak geriye uyari cevirir
+typedef struct{
+    char *data;
+    
+    //BOOL FONKSIYON DECL
+    int (*isEmpty)(char*);
+    
+} s_str;
 
-s_cpy       => stringi statik olarak parametre verilen arraye kopyalar
-sd_cpy      => verilen stringi dinamik olarak kopyalayip geri cevirir
-sn_cpy      => stringi statik olarak parametreye verilen arraye girilen indexler arasinda kopyalar
-sdn_cpy     => verilen stringi dinamik olarak kopyalarken verilen indexlere gore islem gorur ve geri cevirir
-
-s_toInt     => sadece integer deger iceren stringin veri tipini integera cevirir
-i_toStr     => integer bir degiskeni stringe cevirir
-
-s_slice     => girilen araliklarda string uzerinde kesme islemleri yapmaya yarar
-
-s_concat    => statik olarak str1 ve str2 stringlerini 3.parametre olan concatStr'ye birlestirir
-sd_concat   => dinamik olarak str1 ve str2 stringlerini birlestirir ve ayri bellek olarak doner
-
-sd_format   => parametreye girilen stringde kacis dizisi islemlerini yapmamizi saglar
-s_powxy     =>
-
-PARAMETRELER
-xxxxxxxxStatus      => sonu Status ile biten parametreler hiz icin kapatilabilir parametrelerdir true/false 0/1 degerleri alirlar
-startIndex          =>
-*/
-
+//TEMEL STRING FONKSIYONLARI
 int s_len(const char *str);
-void s_lenControl(const char *str1 , const char *str2);
+int* s_slen(const char *str);
 
-void s_cpy(const char *str1 , char *str2 , int s_lenControlStatus);
+void s_cpy(const char *str1 , char *str2 , int maxSizeof);
 void sn_cpy(const char *str1 , char *str2 , int startIndex , int stopIndex);
 char* sd_cpy(const char *str1);
 char* sdn_cpy(const char *str1 , int startIndex , int stopIndex);
@@ -46,7 +28,13 @@ char* s_slice(char *str);
 void s_concat(char *str1 , char *str2 , char *concatStr);
 char* sd_concat(char *str1 , char *str2);
 
-//implemantasyonlar icin gerekli olan fonksiyonlar
+char* sd_long(char *str);
+char* sd_short(char *str);
+
+//BOOL FONKSIYONLARI
+int isEmpty(char *msg);
+
+//IMPLEMENTASYON ICIN GEREKLI FONKSIYONLAR
 int s_powxy(int x , int y);
 void s_zerosArray(int *arr , int size);
 
