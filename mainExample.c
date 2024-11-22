@@ -57,8 +57,14 @@ int main(){
     printf("%d\n",s_equal(arr9,arr11,1)); //"alican" == "alican"        =>default minLen    TRUE
     printf("%d\n",s_equal(arr11,arr9,0)); //"alican     " == "alican"   =>default str1 len  FALSE
     printf("%d\n",s_equal(arr11,arr9,1)); //"alican     " == "alican"   =>default minLen    TRUE
-    
-    
+
+    char *canKelimesi = sd_slice(arr9,3,-1);   
+    printf("%s\n",canKelimesi); //can
+
+    printf("arr9:::: %s\nlen::: %d\n",arr9,s_len(arr9));
+    char boslukDoldurmaKarakteri = '-';
+    s_slice(arr9,3,-1,boslukDoldurmaKarakteri);
+    printf("arr9:::: %s\nlen ::: %d\n",arr9,s_sflen(arr9,boslukDoldurmaKarakteri));
     
 
     free(kopyaArr1);
@@ -66,6 +72,7 @@ int main(){
     free(oki2Doki);
     free(longest);
     free(shortest);
+    free(canKelimesi);
 
     return 0x0;
 }

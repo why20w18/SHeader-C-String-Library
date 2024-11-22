@@ -10,6 +10,14 @@ int s_len(const char *str){
     return len;
 }
 
+int s_sflen(const char *str,char fillChar){
+    int i = 0;
+    while(str[i] != fillChar){
+        i++;
+    }
+    return i;
+}
+
 int s_wc(const char *str){
     if(str == NULL) return -1;
     
@@ -164,9 +172,58 @@ char* i_toStr(int n){
 
 }
 
-char* s_slice(char *str){
+void s_slice(char *str , int startIndex , int stopIndex , char fillBlankChar){
+    int len = s_len(str);
+    if(str == NULL || startIndex < -1 || stopIndex > len-1) return;
 
+    char *tempStr = sd_slice(str,startIndex,stopIndex);
+    
+    for(int i = 0 ; i < len ; i++){
+        str[i] = fillBlankChar;
+    }
+    
+    if(stopIndex == -1)
+    stopIndex = len-1;
+    if(startIndex == -1)
+    startIndex = 0;
+
+    for(int i = 0 ; i < (stopIndex-startIndex+1) ; i++)
+        str[i] = tempStr[i];
+    
+    free(tempStr);
 }
+
+char* sd_slice(char *str , int startIndex , int stopIndex){
+    int len = s_len(str);
+
+    if(str == NULL || startIndex < -1 || stopIndex > len-1) return NULL;
+
+    if(stopIndex == -1)
+        stopIndex = len-1;
+    if(startIndex == -1)
+        startIndex = 0;
+
+    char *startIndexAddr = &str[startIndex];
+    char *stopIndexAddr = &str[stopIndex];
+
+    char *resultStr = (char*) malloc(sizeof(char) * (stopIndex-startIndex+2));
+    int i = 0;
+    
+    while(startIndexAddr <= stopIndexAddr){
+        resultStr[i++] = *startIndexAddr;
+        startIndexAddr++;
+    }
+
+    resultStr[i] = '\0';
+
+    return resultStr;
+}
+
+char* createString(int s_lens){
+    char *str = (char*) malloc(sizeof(char)*s_lens);
+    return str;
+}
+
 
 void s_concat(char *str1 , char *str2 , char *concatStr){
     int len1 = s_len(str1);
